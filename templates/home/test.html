@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<!--购物车-->
+<div class="shopCart">
+  <!--可以在table外面套一个div写死宽高并设置overflow-y:scroll;，出现大量内容时，让table纵向滚动-->
+  <div class="cartBox">
+    <table class="cart">
+      <thead>
+      <tr>
+        <th>菜品名称</th>
+        <th>数量</th>
+        <th>单价</th>
+        <th>价格</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>大闸蟹</td>
+        <td>
+          <button class="add">+</button>
+          <span class="count">1</span>
+          <button class="reduce">-</button>
+        </td>
+        <td>
+          ￥<span class="price">68.00</span>
+        </td>
+        <td>
+          ￥<span class="sub_total">68.00</span>
+        </td>
+      </tr>
+      <tr>
+        <td>在天愿作比翼鸟</td>
+        <td>
+          <button class="add">+</button>
+          <span class="count">1</span>
+          <button class="reduce">-</button>
+        </td>
+        <td>
+          ￥<span class="price">68.00</span>
+        </td>
+        <td>
+          ￥<span class="sub_total">68.00</span>
+        </td>
+      </tr>
+      <tr>
+        <td>红嘴绿鹦哥</td>
+        <td>
+          <button class="add">+</button>
+          <span class="count">1</span>
+          <button class="reduce">-</button>
+        </td>
+        <td>
+          ￥<span class="price">68.00</span>
+        </td>
+        <td>
+          ￥<span class="sub_total">68.00</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ul class="totalInfo clearfix">
+    <li>
+                <span class="total">
+                合计：<i>￥</i><b>242.00</b>
+                </span>
+    </li>
+    <li>
+      <button class="btn-save">保存</button>
+    </li>
+  </ul>
+</div>
+<script src="../../static/base/js/jquery-3.1.1.min.js">
+<script>
+  $('.add').click(function(){
+  //修改数量
+  var n=$(this).next().html();
+  var num=parseInt(n)+1;
+  $(this).next().html(num);
+  //计算价格
+  var c= $(this).parent().siblings().children('.price').html();
+  parseInt(c);
+  var subPrice = num * c;
+  var sub_price = subPrice.toFixed(2); //保留小数点后面两位小数
+  $(this).parent().siblings().children('.sub_total').html(sub_price);
+
+  //计算总价
+  var total=0;
+  $('.sub_total').each(function(){
+  var price=parseInt($(this).html());
+  total+=price;
+  var total_price = total.toFixed(2);
+  $('.total b').html(total_price);
+});
+});
+
+
+
+  $('.reduce').click(function(){
+  //修改数量
+  var n=$(this).prev().html();
+  var num=parseInt(n)-1;
+  if(num==0){return;}//数量减到0就能再减了
+  $(this).prev().html(num);
+
+  //计算价格
+  var c= $(this).parent().siblings().children('.price').html();
+  parseInt(c);
+  var subPrice = num * c;
+  subPrice.toFixed(2);
+  var sub_price = subPrice.toFixed(2);
+  $(this).parent().siblings().children('.sub_total').html(sub_price);
+
+  //计算总价
+  var total=0;
+  $('.sub_total').each(function(){
+  var price=parseInt($(this).html());
+  total+=price;
+  var total_price = total.toFixed(2);
+  $('.total b').html(total_price);
+});
+});
+</script>
+</body>
+</html>

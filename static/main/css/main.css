@@ -1,0 +1,140 @@
+#main {
+  padding: 59.1px 0;
+  font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 117px;
+  position: fixed; }
+
+
+#topSwiper {
+  height: 154px;
+  width: 390px;
+  overflow: hidden; }
+#topSwiper div a {
+  display: inline-block;
+  height: 154px;
+  width: 390px; }
+#topSwiper img {
+  width: 100%;
+  height: 100%; }
+
+
+
+.topMenu {
+  padding-bottom: 10.1px; }
+.topMenu nav {
+  margin: 13.7px 0 10.1px;
+  background: white; }
+.topMenu nav ul {
+  display: flex; }
+.topMenu nav li {
+  width: 97.5px;
+  text-align: center;
+  font-size: 13.7px; }
+.topMenu nav li img {
+  width: 97.5px; }
+
+
+#swiperMenu {
+  width: 100%; }
+#swiperMenu li img {
+  width: 100%; }
+
+
+
+.CVS {
+  background: white; }
+.CVS h2 img {
+  width: 100%;
+}
+
+
+.CVS ol {
+  display: flex;
+  flex-wrap: wrap; }
+.CVS ol li {
+  list-style: none;
+  width: 20%;
+  margin: 5px 0;
+}
+.CVS > ol a {
+  display: block;
+  width: 59.1px;
+}
+.CVS ol a img {
+  width: 59.1px;
+}
+.CVS ol li span{
+  font-size: 11.7px;
+  display: block;
+  text-align: center;
+}
+
+
+.mainInfo {
+  }
+.mainInfo > section {
+  margin: 7.8px auto 0;
+  width: 358.8px; }
+
+
+
+.mainInfo > section > div > a > img {
+  width: 100%; }
+
+
+
+.mainInfo > section > ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; }
+.mainInfo > section > ul > li {
+  background: white;
+  width: 47.35%;
+  margin: 7px 4.5px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative; }
+.mainInfo > section > ul > li > a {
+  font-size: 15.6px;
+  color: red;
+  display: block; }
+.mainInfo > section > ul > li > a > img {
+  width: 100%; }
+.mainInfo > section > ul > li > a > s {
+  color: grey;
+  font-size: 11.7px; }
+.mainInfo .description {
+  font-size: 14.4px;
+  color: black;
+  width: 100%;
+  display: block;
+  line-height: 1.2em;
+  height: 2.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin:5px 2px ;
+}
+.mainInfo > section > ul > li > button {
+  border: 1px solid lightgrey;
+  border-radius: 1111px;
+  width: 31.2px;
+  height: 31.2px;
+  display: block;
+  line-height: 0.0px;
+  text-align: center;
+  color: orangered;
+  font-size: 31.2px;
+  position: absolute;
+  right: 0;
+  top: 140.4px;
+  background: white; }
+.mainInfo > section > ul > li > button > span {
+  position: relative;
+  top: -1.95px;
+  margin: auto; }

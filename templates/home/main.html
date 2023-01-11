@@ -1,0 +1,111 @@
+{% extends 'home/base.html' %}
+{% load static from staticfiles %}
+
+
+{% block linkscript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}"/>
+    <script type="text/javascript" charset="utf-8" src="{% static 'main/js/main.js' %}"></script>
+{% endblock linkscript %}
+
+
+
+{% block base %}
+    <div id="main">
+        {# 轮播 #}
+        <section class="swiper-container" id="topSwiper">
+            <div class="swiper-wrapper">
+                {%  for banner in banners %}
+                <div class="swiper-slide">
+                    <a><img src="http://localhost:8000/media/{{banner.bannerImg}}"></a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"></div>
+        </section>
+
+        {# 快速选择 #}
+        <!--13691511443-->
+        <section class="CVS">
+            <ol>
+                <li>
+                    <a href="/market/104749/0/0/">
+                        <img src="/media/media/img.png" alt="万里超市"/>
+                        <span>万里超市</span>
+                    </a>
+                    </li>
+                <li>
+                    <a href="/market/104749/0/0/">
+                        <img src="/media/media/img.png" alt="数码"/>
+                        <span>数码</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/market/104749/0/0/">
+                        <img src="/media/media/img.png" alt="领券"/>
+                        <span>领券</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/market/104749/0/0/">
+                        <img src="/media/media/img.png" alt="茅台酒"/>
+                        <span>茅台酒</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/market/104749/0/0/">
+                        <img src="/media/media/img.png" alt="优选水果"/>
+                        <span>优选水果</span>
+                    </a>
+                </li>
+            </ol>
+        </section>
+
+
+        <section class="mainInfo">
+
+                <section>
+                    {% for item in cate %}
+                    <div>
+                        <a>
+                            {{item.typename}}
+                        </a>
+                    </div>
+
+                    <ul class="mainlist list{{item.id}}">
+                        <script>
+                            // var cate={{cate|safe}}
+                            var json1={{mainList |safe }};
+                            // for (i in cate){
+                            //     console.log(cate[i])
+                            // }
+                            for(i in json1){
+                                if(json1[i].category_id=='{{item.id}}'){
+                                    var txt2 = $(
+                                        '<li style="">\n' +
+                                        '                            <a href="">\n' +
+                                        '                                <img class="id" src=https:'+json1[i].productimg+'/>\n' +
+                                        '                                <span class="description">'+json1[i].productname+'</span>\n' +
+                                        '                                <span>¥'+json1[i].price+'</span>\n' +
+                                        '                                <s>¥'+json1[i].marketprice+'</s>\n' +
+                                        '                            </a>\n' +
+                                        '                            <button><span>&#43;</span></button>\n' +
+                                        '                        </li>'
+                                    )
+                                    var name=".list"+{{item.id}}
+                                    $(name).append(txt2);
+                                }
+
+                            }
+                        </script>
+                    </ul>
+                    {% endfor %}
+                </section>
+
+        </section>
+
+    </div>
+
+{% endblock base %}
+
+
+
