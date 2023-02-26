@@ -179,7 +179,8 @@ def number_format(value, decimal_pos=None, use_l10n=None, force_grouping=False):
         decimal_pos,
         get_format('NUMBER_GROUPING', lang, use_l10n=use_l10n),
         get_format('THOUSAND_SEPARATOR', lang, use_l10n=use_l10n),
-        force_grouping=force_grouping
+        force_grouping=force_grouping,
+        use_l10n=use_l10n,
     )
 
 
@@ -196,6 +197,8 @@ def localize(value, use_l10n=None):
     elif isinstance(value, bool):  # Make sure booleans don't get treated as numbers
         return str(value)
     elif isinstance(value, (decimal.Decimal, float, int)):
+        if use_l10n is False:
+            return str(value)
         return number_format(value, use_l10n=use_l10n)
     elif isinstance(value, datetime.datetime):
         return date_format(value, 'DATETIME_FORMAT', use_l10n=use_l10n)

@@ -14,14 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
+from django.urls import path
 from django.conf.urls.static import static
 from django.contrib import admin
 
 from online import settings
-from shop.views import index
+from shop.views import  MainView, CartView,ConfirmView,CommentsView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',index, name="index"),
+    path(r'main/', MainView.as_view() ),
+    url(r'^cart/', CartView.as_view()),
+    url(r'comments/', CommentsView.as_view()),
+    url(r'confirm/',ConfirmView.as_view()),
     url(r'^', include('shop.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

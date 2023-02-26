@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'rest_framework',
+    'corsheaders',
 ]
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')     #设置静态文件路径为主目录下的media文件夹
 MEDIA_URL = '/media/'
@@ -50,12 +52,27 @@ SIMPLEUI_HOME_INFO = False
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+CORS_ALLOW_CREDENTIALS = True # 允许携带cookie
+#直接允许所有主机跨域
+CORS_ORIGIN_ALLOW_ALL = True #解决跨域
+
+CORS_ORIGIN_WHITELIST = ('http://localhost:8080',)
+# CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',
+#                       'content-type', 'accept', 'origin', 'authorization')
+# CORS_ALLOW_METHODS = (
+#     'DELETE','GET','OPTIONS','PATCH','POST','PUT','VIEW')
+
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'
 
 ROOT_URLCONF = 'online.urls'
 
@@ -88,6 +105,10 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '127.0.0.1',
         'POST': '3306',
+        'OPTIONS': {
+                    'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"',
+                    'charset': 'utf8mb4'
+                }
     }
 }
 
@@ -132,3 +153,10 @@ STATICFILES_DIRS = [
 ]
 
 MDEIA_ROOT = os.path.join(BASE_DIR, r'static\mdeia')
+
+# 支付宝
+ALIPAY_APP_ID = '2021000122610332'
+APP_PRIVATE_KEY_STRING = open('{}/shop/app_private_key.txt'.format(BASE_DIR)).read()
+ALIPAY_PUBLIC_KEY_STRING = open('{}/shop/alipay_public_key.txt'.format(BASE_DIR)).read()
+ALIPAY_SIGN_TYPE = 'RSA2'
+ALIPAY_SUBJECT = '点餐'

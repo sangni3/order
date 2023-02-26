@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-
-from .models import User, Cart,Goods,Order,Category,Banner
+from django.forms.models import model_to_dict
+from .models import User, Goods, Order, Category, Banner, OrderGoods, comments
 from django.contrib.auth.models import Group
 
 from django.utils.safestring import mark_safe
@@ -48,42 +48,33 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ['typename']
     list_display = ['typeid','typename']
 
-@admin.register(Cart)
-class CartAdmin(admin.ModelAdmin):
-    search_fields = ['productid']
-    list_display = ['id','productid','productnum','productprice']
 
-    # def get_price(self, productid):
-    #     G= Goods.objects.filter(productid=productid)
-    #     print(productid)
-    #     num=G.productnum*G.marketprice-G.storenums*G.price
-    #     return num
-    # get_price.short_description = '利润'
-
-    list_per_page = 10
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
 
-    def orderid(self):
-        return self.orderid
+    def user_id (self):
+        return self.user.userAccount
 
-    orderid.short_description = "订单id"
+    user_id.short_description = "用户id"
 
-    def user(self):
-        return self.user
+    def order_goods(self):
+        goods=OrderGoods.objects.filter(order=self)
+        a=[]
+        for i in goods:
+            a.append(str(i)+' * '+str(i.count)+' ')
+        return a
 
-    user.short_description = "用户"
+    order_goods.short_description='商品详情'
 
+    list_editable = ['status']
 
-
-    list_display = ['orderid',"user_id",'totalprice','created_time']
-
-    search_fields = list_display
-
-    date_hierarchy = 'created_time'
-
+    list_display = ['order_id',user_id,order_goods,'address','comment','status','pay_method','created_time']
+    list_filter = ['status']
+    search_fields = ['order_id',"user_id",'address']
     list_per_page = 7
 
-
+@admin.register(comments)
+class commentsAdmin(admin.ModelAdmin):
+    list_display = ['user','goods', 'comments','created_time']
 
